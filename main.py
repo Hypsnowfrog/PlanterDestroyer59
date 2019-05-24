@@ -1,5 +1,7 @@
 import sys
 from network import *
+from decode import *
+import re
 
 def main():
     if len(sys.argv) == 2:
@@ -17,6 +19,7 @@ def main():
     print(numero)
     received = connexion.receive()
     print(received)
+    print(re.search("([0-9]+([:\|]))+", received).group(0))
 
 
 if __name__ == '__main__':
