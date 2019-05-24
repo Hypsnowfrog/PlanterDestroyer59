@@ -19,7 +19,7 @@ def main():
     print(numero)
     received = connexion.receive()
     print(received)
-    print(re.search("([0-9]+([:\|]))+", received).group(0))
+    print(process(decode(re.search("([0-9]+([:\|]))+", received).group(0))))
 
 
 if __name__ == '__main__':

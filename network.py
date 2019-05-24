@@ -3,7 +3,7 @@ import socket
 
 class Network:
 
-    def __init__(self, ip="172.16.97.13", port=8001):
+    def __init__(self, ip="172.16.97.13", port=8003):
         self.ip = ip
         self.port = int(port)
         self.sock = self._connectTo()
