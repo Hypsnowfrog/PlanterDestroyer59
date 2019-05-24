@@ -1,26 +1,28 @@
 import re
 
-def convert(char):
-    if char == 'A':
-        return 0
-    elif char == 'B':
-        return '1'
-    elif char == 'C':
-        return '2'
-    elif char == 'D':
-        return '3'
-    elif char == 'E':
-        return '4'
-    elif char == 'F':
-        return '5'
-    elif char == 'G':
-        return '6'
-    elif char == 'H':
-        return '7'
-    elif char == 'I':
-        return '8'
-    elif char == 'J':
-        return '9'
+
+def convert(string):
+    #Entré string 'A:1'
+    if string[0] == 'A':
+        return int(string[2]), 0
+    elif string[0] == 'B':
+        return int(string[2]), 1
+    elif string[0] == 'C':
+        return int(string[2]), 2
+    elif string[0] == 'D':
+        return int(string[2]), 3
+    elif string[0] == 'E':
+        return int(string[2]), 4
+    elif string[0] == 'F':
+        return int(string[2]), 5
+    elif string[0] == 'G':
+        return int(string[2]), 6
+    elif string[0] == 'H':
+        return int(string[2]), 7
+    elif string[0] == 'I':
+        return int(string[2]), 8
+    elif string[0] == 'J':
+        return int(string[2]), 9
 
 
 def decode(map):
@@ -66,7 +68,6 @@ def process(tab):
             if tab[i][j] != -1 and int(tab[i][j]) < 32:
                 plot.append([])
                 rec(tab, plot[-1], i, j)
-    print(tab)
     return plot
 
 
