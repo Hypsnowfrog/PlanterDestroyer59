@@ -4,10 +4,17 @@ import random
 
 class IA:
 
-    def __init__(self, chaine):
-        self.chaine = chaine
+    def __init__(self, map):
+        self.map = map
+        self.parcelleJouer = []
 
-    def toutCoup(touteCoord, listeCoups = None):
+    def addParcelJouer(self, coup):
+        for parcelle in self.map:
+            if coup in parcelle:
+                if parcelle not in self.parcelleJouer:
+                    self.parcelleJouer.append(parcelle)
+
+    def toutCoup(self, touteCoord, listeCoups = None):
         ret = []
         if listeCoups==None:
             for parcelle in touteCoord:
@@ -25,5 +32,17 @@ class IA:
                                 ret.append(coordonnee)
         return ret
 
-    def nextAction(coupPossible):
-        return coupPossible[random.randint(0, len(coupPossible)-1)]
+    def proba(self, coupPossible):
+        ret = []
+        for parcelle in self.parcelleJouer:
+            if coupPossible not in parcelle:
+                ret.append(coupPossible)
+        return ret
+
+
+    def nextAction(self, coupPossible, listeParcelleJouer):
+        coup = proba(listeParcelleJouer, coupPossible)
+        if len(coup) != 0:
+            return coup[random.randint(0, len(coup) - 1)]
+        return coupPossible[random.randint(0, len(coupPossible) - 1)]
+
