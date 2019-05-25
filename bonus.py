@@ -7,28 +7,32 @@ class IA:
     def __init__(self, map):
         self.map = map
         self.parcelleJouer = []
+        self.coupJouer = []
 
     def addParcelJouer(self, coup):
+        self.coupJouer.append(coup)
         for parcelle in self.map:
             if coup in parcelle:
                 if parcelle not in self.parcelleJouer:
                     self.parcelleJouer.append(parcelle)
 
-    def toutCoup(self, touteCoord, listeCoups = None):
+    def toutCoup(self):
         ret = []
-        if listeCoups==None:
-            for parcelle in touteCoord:
+        if len(self.coupJouer) == 0:
+            for parcelle in self.map:
                 for coordonnee in parcelle:
                     ret.append(coordonnee)
         else:
-            for parcelle in touteCoord:
+            for parcelle in self.map:
                 parcelleJoue = False
-                if(listeCoups[-1] in parcelle or listeCoups[-2] in parcelle):
+                if self.coupJouer[-1] in parcelle:
+                    parcelleJoue = True
+                if len(self.coupJouer)>1 and self.coupJouer[-2] in parcelle:
                     parcelleJoue = True
                 if not parcelleJoue:
                     for coordonnee in parcelle:
-                        if listeCoups[-1][0] == coordonnee[0] or listeCoups[-1][1] == coordonnee[1]:
-                            if coordonnee not in listeCoups:
+                        if self.coupJouer[-1][0] == coordonnee[0] or self.coupJouer[-1][1] == coordonnee[1]:
+                            if coordonnee not in self.coupJouer:
                                 ret.append(coordonnee)
         return ret
 
@@ -39,10 +43,10 @@ class IA:
                 ret.append(coupPossible)
         return ret
 
-
-    def nextAction(self, coupPossible, listeParcelleJouer):
-        coup = proba(listeParcelleJouer, coupPossible)
+    def nextAction(self):
+        coupPossible = self.toutCoup()
+        coup = self.proba(coupPossible)
         if len(coup) != 0:
             return coup[random.randint(0, len(coup) - 1)]
-        return coupPossible[random.randint(0, len(coupPossible) - 1)]
+        return coupPossible[random.randint(0, len(self.toutCoup()) - 1)]
 

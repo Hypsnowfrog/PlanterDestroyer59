@@ -26,7 +26,6 @@ def convert(string):
 
 
 def decode(map):
-    print(map)
     lines = map.split('|')
     lines.pop()
     tab = []
@@ -70,7 +69,38 @@ def process(tab):
                 rec(tab, plot[-1], i, j)
     return plot
 
+def convertStringInt(chaine):
+    tabsplit = chaine.split("|", 10)
+    tabsplit.remove('')
+    tableau = []
+    for i in range(len(tabsplit)):
+        tableau.append(tabsplit[i].split(":"))
+        tableau[i] = [int(j) for j in tableau[i]]
+    return tableau
+
+def convertPos(pos):
+    print(pos)
+    if pos[0] == 0:
+        return 'A:'+str(0)
+    elif pos[0] == 1:
+        return 'B:'+str(1)
+    elif pos[0] == 2:
+        return 'C:'+str(2)
+    elif pos[0] == 3:
+        return 'D:'+str(3)
+    elif pos[0] == 4:
+        return 'E:'+str(4)
+    elif pos[0] == 5:
+        return 'F:'+str(5)
+    elif pos[0] == 6:
+        return 'G:'+str(6)
+    elif pos[0] == 7:
+        return 'H:'+str(7)
+    elif pos[0] == 8:
+        return 'I:'+str(8)
+    elif pos[0] == 9:
+        return 'J:'+str(9)
 
 # map = '3:1:1:1:9:3:1:1:1:9|2:0:0:0:8:2:0:0:0:8|2:0:0:0:8:2:0:0:0:8|2:0:0:0:8:2:0:0:0:8|6:4:4:4:12:6:4:4:4:12|'
-map = '3:9:71:69:65:65:65:65:65:73|2:8:3:9:70:68:64:64:64:72|6:12:2:8:3:9:70:68:64:72|11:11:6:12:6:12:3:9:70:76|10:10:11:11:67:73:6:12:3:9|14:14:10:10:70:76:7:13:6:12|3:9:14:14:11:7:13:3:9:75|2:8:7:13:14:3:9:6:12:78|6:12:3:1:9:6:12:35:33:41|71:77:6:4:12:39:37:36:36:44|'
-print(process(decode(re.search("([0-9]+([:\|]))+", map).group(0))))
+#map = '3:9:71:69:65:65:65:65:65:73|2:8:3:9:70:68:64:64:64:72|6:12:2:8:3:9:70:68:64:72|11:11:6:12:6:12:3:9:70:76|10:10:11:11:67:73:6:12:3:9|14:14:10:10:70:76:7:13:6:12|3:9:14:14:11:7:13:3:9:75|2:8:7:13:14:3:9:6:12:78|6:12:3:1:9:6:12:35:33:41|71:77:6:4:12:39:37:36:36:44|'
+#print(process(decode(re.search("([0-9]+([:\|]))+", map).group(0))))
